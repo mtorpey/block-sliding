@@ -1,0 +1,25 @@
+########################################################
+# Huarong Dao (traditional Chinese block-sliding puzzle)
+########################################################
+# https://en.wikipedia.org/wiki/Klotski#/media/File:HuaRongDao.jpg
+# https://play.google.com/store/apps/details?id=com.lu.ho
+
+game 5 4        # 5 rows, 4 columns
+
+# Each row has the following format:
+# <piece name>: <row list>, <column list> (<class>)
+
+ZhangFei: 1 2, 1 1 (1)      
+CaoCao: 1 1 2 2, 2 3 2 3 (2)
+MaChao: 1 2, 4 4 (1)   # this piece's shape is identical to ZhangFei, hence (1)
+ZhaoYun: 3 4, 1 1 (1)
+GuanYu: 3 3, 2 3 (5)
+HuangZhong: 3 4, 4 4 (1)
+s1: 4, 2 (7)
+s2: 4, 3 (7)
+s3: 5, 1 (7)
+s4: 5, 4 (7)
+
+# if CaoCao occupies (5,2) and (5,3) then we've won
+
+win: CaoCao 5 2, CaoCao 5 3
