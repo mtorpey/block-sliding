@@ -197,7 +197,11 @@ read_puzzle := function(filename)
     if Remove(next_line) <> '\n' then
       ErrorNoReturn("line ended without newline,");
     fi;
-    next_line := SplitString(next_line, "#")[1]; # Remove comments
+    next_line := SplitString(next_line, "#"); # Remove comments
+    if next_line <> [] then
+      next_line := next_line[1];
+    fi;
+    NormalizeWhitespace(next_line);
     if ForAny(next_line, c-> c <> ' ') then # Don't use blank lines
       Add(lines, next_line);
     fi;
@@ -263,7 +267,7 @@ read_puzzle := function(filename)
   
   list := SplitString(lines[Length(lines)], ",");
   list := List(list, str-> SplitString(str, "", " "));
-  if Remove(list[1], 1) <> "win" then
+  if not Remove(list[1], 1) in ["win", "win:"] then
     ErrorNoReturn("final line should start with \"win\",");
   fi;
   for cond in list do
